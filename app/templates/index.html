@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crop Disease Classifier</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="container">
+    <div class="header-brand">
+      <span class="header-icon">🌿</span>
+      <div>
+        <h1>Crop Disease Classifier</h1>
+        <p>AI-powered plant disease detection using deep learning</p>
+      </div>
+    </div>
+    <div id="statusBadge" class="status-badge status-checking">Checking...</div>
+  </div>
+</header>
+
+<!-- ── Main ───────────────────────────────────────────────────────────── -->
+<main class="container main">
+
+  <!-- Upload panel -->
+  <section class="card upload-card" id="uploadSection">
+    <h2 class="card-title">Upload Leaf Image</h2>
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-inner">
+        <div class="drop-icon">📷</div>
+        <p class="drop-text">Drag &amp; drop an image here</p>
+        <p class="drop-sub">or</p>
+        <label class="btn btn-primary" for="fileInput">Browse Files</label>
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <p class="drop-hint">Supports JPG, PNG, WEBP · Max 10 MB</p>
+      </div>
+    </div>
+    <div class="preview-wrap" id="previewWrap" hidden>
+      <img id="previewImg" src="" alt="Preview" class="preview-img" />
+      <div class="preview-actions">
+        <button class="btn btn-primary" id="analyzeBtn">🔍 Analyze</button>
+        <button class="btn btn-secondary" id="clearBtn">✕ Clear</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results panel -->
+  <section class="card result-card" id="resultSection" hidden>
+    <h2 class="card-title">Detection Results</h2>
+
+    <!-- Top prediction -->
+    <div id="topResult" class="top-result"></div>
+
+    <!-- Confidence bars -->
+    <div class="predictions-list" id="predictionsList"></div>
+
+    <!-- Disease info -->
+    <div class="disease-info" id="diseaseInfo" hidden>
+      <h3>Disease Information</h3>
+      <div id="diseaseContent"></div>
+    </div>
+  </section>
+
+  <!-- Stats row -->
+  <section class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">38</div>
+      <div class="stat-label">Disease Classes</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Crop Types</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">54k+</div>
+      <div class="stat-label">Training Images</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">EfficientNet</div>
+      <div class="stat-label">Architecture</div>
+    </div>
+  </section>
+
+  <!-- Supported crops -->
+  <section class="card">
+    <h2 class="card-title">Supported Crops</h2>
+    <div class="crops-grid" id="cropsGrid">
+      <span class="crop-tag">🍎 Apple</span>
+      <span class="crop-tag">🫐 Blueberry</span>
+      <span class="crop-tag">🍒 Cherry</span>
+      <span class="crop-tag">🌽 Corn</span>
+      <span class="crop-tag">🍇 Grape</span>
+      <span class="crop-tag">🍊 Orange</span>
+      <span class="crop-tag">🍑 Peach</span>
+      <span class="crop-tag">🫑 Bell Pepper</span>
+      <span class="crop-tag">🥔 Potato</span>
+      <span class="crop-tag">🫐 Raspberry</span>
+      <span class="crop-tag">🫘 Soybean</span>
+      <span class="crop-tag">🎃 Squash</span>
+      <span class="crop-tag">🍓 Strawberry</span>
+      <span class="crop-tag">🍅 Tomato</span>
+    </div>
+  </section>
+</main>
+
+<!-- ── Loading overlay ─────────────────────────────────────────────────── -->
+<div class="loading-overlay" id="loadingOverlay" hidden>
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <p>Analyzing image...</p>
+  </div>
+</div>
+
+<!-- ── Toast ───────────────────────────────────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
